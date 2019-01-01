@@ -5,11 +5,19 @@ env:
   # Docker slug
   - DOCKER_REPO_SLUG=fewbox/sample-istio-photo
 install:
- - dotnet restore
+  - dotnet restore
 script:
- - dotnet publish Sample-Istio-Photo.csproj
- - cd $TRAVIS_BUILD_DIR/bin/Debug/netcoreapp2.1/publish
- - cp $TRAVIS_BUILD_DIR/Dockerfile ./
- - docker build -t $DOCKER_REPO_SLUG:$TRAVIS_JOB_NUMBER .
- - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
- - docker push $DOCKER_REPO_SLUG:$TRAVIS_JOB_NUMBER
+  - dotnet publish Sample-Istio-Photo.csproj
+  - cd $TRAVIS_BUILD_DIR/bin/Debug/netcoreapp2.1/publish
+  - cp $TRAVIS_BUILD_DIR/Dockerfile ./
+  # build latest image always
+  - docker build -t $DOCKER_REPO_SLUG:latest .
+  # build the tagged image
+  - if [[ $TRAVIS_TAG = $TRAVIS_BRANCH ]]; then docker build -t $DOCKER_REPO_SLUG:$TRAVIS_BRANCH .; else true ; fi
+after_success:
+  # IMPORTANT! Add the environment variables in Travis Build Environment (one time!)
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  # push to latest if master branch
+  - if [[ $TRAVIS_BRANCH = master ]]; then docker push $DOCKER_REPO_SLUG:latest; else true; fi
+  # push tag as well
+  - if [[ $TRAVIS_TAG = $TRAVIS_BRANCH ]]; then docker push $DOCKER_REPO_SLUG:$TRAVIS_TAG; else true ; fi
