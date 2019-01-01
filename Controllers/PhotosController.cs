@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Sample_Istio_Photo.Dtos;
 
 namespace Sample_Istio_Photo.Controllers
 {
@@ -12,9 +13,9 @@ namespace Sample_Istio_Photo.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<ReviewDto>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new List<ReviewDto>{};
         }
     }
 }
