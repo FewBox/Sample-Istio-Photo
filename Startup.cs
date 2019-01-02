@@ -45,7 +45,12 @@ namespace Sample_Istio_Photo
             {
                 app.UseHsts();
             }
-            app.UseCors();
+            app.UseCors(builder => {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+                builder.AllowCredentials();
+            });
             app.UseHttpsRedirection();
             app.UseMvc();
         }
