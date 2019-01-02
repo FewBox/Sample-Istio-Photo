@@ -42,7 +42,7 @@ spec:
   addresses:
   - 0.0.0.0/0
   ports:
-  - name: http
-    number: 80
-    protocol: http
+  - name: https
+    number: 443
+    protocol: https
   location: MESH_EXTERNAL
