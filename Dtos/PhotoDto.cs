@@ -2,6 +2,7 @@ namespace Sample_Istio_Photo.Dtos
 {
     public class PhotoDto
     {
-        public string Url {get;set;}
+        public string Id { get; set; }
+        public UrlsDto Urls { get; set; }
     }
 }

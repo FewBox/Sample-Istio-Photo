@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Sample_Istio_Photo.Dtos;
+using Sample_Istio_Photo.Repositories;
 
 namespace Sample_Istio_Photo.Controllers
 {
@@ -11,11 +13,19 @@ namespace Sample_Istio_Photo.Controllers
     [ApiController]
     public class PhotosController : ControllerBase
     {
+        private IUnsplashRepository UnsplashRepository{ get; set; }
+        private IMapper Mapper { get; set; }
+
+        public PhotosController(IMapper mapper, IUnsplashRepository unsplashRepository)
+        {
+            this.Mapper = mapper;
+            this.UnsplashRepository = unsplashRepository;
+        }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<ReviewDto>> Get()
+        public async Task<IEnumerable<PhotoDto>> Get()
         {
-            return new List<ReviewDto>{};
+            return await this.Mapper.Map<Task<IEnumerable<Photo>>, Task<IEnumerable<PhotoDto>>>(this.UnsplashRepository.FindAll());
         }
     }
 }
