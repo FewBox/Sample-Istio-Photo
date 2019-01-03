@@ -23,9 +23,9 @@ namespace Sample_Istio_Photo.Controllers
         }
         // GET api/values
         [HttpGet]
-        public async Task<IEnumerable<PhotoDto>> Get()
+        public async Task<IList<PhotoDto>> Get()
         {
-            return await this.Mapper.Map<Task<IEnumerable<Photo>>, Task<IEnumerable<PhotoDto>>>(this.UnsplashRepository.FindAll());
+            return await this.Mapper.Map<Task<IList<Photo>>, Task<IList<PhotoDto>>>(this.UnsplashRepository.FindAll());
         }
     }
 }

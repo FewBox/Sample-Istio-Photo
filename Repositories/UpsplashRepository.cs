@@ -13,13 +13,13 @@ namespace Sample_Istio_Photo.Repositories
         {
             this.UnsplashApiConfig = unsplashApiConfig;
         }
-        public async Task<IEnumerable<Photo>> FindAll()
+        public async Task<IList<Photo>> FindAll()
         {
             using (var client = new HttpClient())
             {
                 var response = await client.GetAsync($"{this.UnsplashApiConfig.BaseUrl}/photos/?client_id={this.UnsplashApiConfig.AccessKey}");
                 response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsAsync<IEnumerable<Photo>>();
+                return await response.Content.ReadAsAsync<IList<Photo>>();
             }
         }
     }

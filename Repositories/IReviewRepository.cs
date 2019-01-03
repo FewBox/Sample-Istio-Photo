@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 
 namespace Sample_Istio_Photo.Repositories
 {
-    public interface IUnsplashRepository
+    public interface IReviewRepository
     {
-        Task<IList<Photo>> FindAll();
+        Task<IList<Review>> FindAll();
     }
 }

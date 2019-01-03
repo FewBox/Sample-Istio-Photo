@@ -10,8 +10,10 @@ namespace Sample_Istio_Photo.AutoMapperProfiles
     {
         public MapperProfiles()
         {
-            CreateMap<Photo, PhotoDto>();
-            CreateMap<Task<IEnumerable<Photo>>, Task<IEnumerable<PhotoDto>>>();
+            CreateMap<Photo, PhotoDto>()
+                .ForMember(dest => dest.Reviews, opt => opt.MapFrom<ReviewConverter, string>(src=>src.Id));
+            CreateMap<Task<IList<Photo>>, Task<IList<PhotoDto>>>();
+            CreateMap<Task<IList<Review>>, Task<IList<ReviewDto>>>();
             CreateMap<Urls, UrlsDto>();
         }
     }

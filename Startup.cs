@@ -9,6 +9,7 @@ using AutoMapper;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
+using Sample_Istio_Photo.AutoMapperProfiles;
 
 namespace Sample_Istio_Photo
 {
@@ -30,8 +31,11 @@ namespace Sample_Istio_Photo
             // services.AddHttpContextAccessor();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             var unsplashApiConfig = this.Configuration.GetSection("UnsplashApiConfig").Get<UnsplashApiConfig>();
+            var reviewApiConfig = this.Configuration.GetSection("ReviewApiConfig").Get<ReviewApiConfig>();
             services.AddSingleton(unsplashApiConfig);
+            services.AddSingleton(reviewApiConfig);
             services.AddScoped<IUnsplashRepository, UnsplashRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
