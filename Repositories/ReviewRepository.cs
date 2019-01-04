@@ -16,7 +16,7 @@ namespace Sample_Istio_Photo.Repositories
 
         public async Task<IList<Review>> FindAll()
         {
-            return new List<Review> { new Review { Content = "Review1" }, new Review{ Content = "Review2" } };
+            // return new List<Review> { new Review { Content = "Review1" }, new Review{ Content = "Review2" } };
             using (var client = new HttpClient())
             {
                 var response = await client.GetAsync($"{this.ReviewApiConfig.BaseUrl}/reviews");
