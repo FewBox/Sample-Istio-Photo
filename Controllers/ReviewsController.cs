@@ -9,6 +9,9 @@ using Sample_Istio_Photo.Repositories;
 
 namespace Sample_Istio_Photo.Controllers
 {
+    /// <summary>
+    /// Reviews controller.
+    /// </summary> 
     [Route("api/[controller]")]
     [ApiController]
     public class ReviewsController : ControllerBase
@@ -22,6 +25,9 @@ namespace Sample_Istio_Photo.Controllers
             this.ReviewRepository = reviewRepository;
         }
 
+        /// <summary>
+        /// Get all reviews.
+        /// </summary> 
         [HttpGet]
         public async Task<IList<ReviewDto>> Get()
         {

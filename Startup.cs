@@ -10,6 +10,8 @@ using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
 using Sample_Istio_Photo.AutoMapperProfiles;
+using System;
+using System.Reflection;
 
 namespace Sample_Istio_Photo
 {
@@ -36,6 +38,14 @@ namespace Sample_Istio_Photo
             services.AddSingleton(reviewApiConfig);
             services.AddScoped<IUnsplashRepository, UnsplashRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "FewBox API", Version = "v1" });
+                // c.SwaggerDoc("v2", new Info { Title = "FewBox API", Version = "v2" });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +67,14 @@ namespace Sample_Istio_Photo
             });
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseStaticFiles();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "FewBox API V1");
+                // c.SwaggerEndpoint("/swagger/v2/swagger.json", "FewBox API V2");
+                c.RoutePrefix = String.Empty;
+            });
         }
     }
 }
