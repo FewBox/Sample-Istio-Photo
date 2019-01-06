@@ -13,7 +13,6 @@ namespace Sample_Istio_Photo.AutoMapperProfiles
             CreateMap<Photo, PhotoDto>()
                 .ForMember(dest => dest.Reviews, opt => opt.MapFrom<ReviewConverter, string>(src=>src.Id));
             CreateMap<Task<IList<Photo>>, Task<IList<PhotoDto>>>();
-            CreateMap<Task<IList<Review>>, Task<IList<ReviewDto>>>();
             CreateMap<Urls, UrlsDto>();
         }
     }
