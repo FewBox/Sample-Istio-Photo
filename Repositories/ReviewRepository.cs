@@ -35,7 +35,7 @@ namespace Sample_Istio_Photo.Repositories
                 }
                 catch(Exception exception)
                 {
-                    Console.WriteLine($"{exception.Message}:{exception.StackTrace}");
+                    Console.WriteLine($"{exception.Message}");
                 }
                 return null;
             }

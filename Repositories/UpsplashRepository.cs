@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Sample_Istio_Photo.Configs;
 using System.Net.Http;
@@ -17,9 +18,17 @@ namespace Sample_Istio_Photo.Repositories
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync($"{this.UnsplashApiConfig.BaseUrl}/photos/?client_id={this.UnsplashApiConfig.AccessKey}");
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsAsync<IList<Photo>>();
+                try
+                {
+                    var response = await client.GetAsync($"{this.UnsplashApiConfig.BaseUrl}/photos/?client_id={this.UnsplashApiConfig.AccessKey}");
+                    response.EnsureSuccessStatusCode();
+                    return await response.Content.ReadAsAsync<IList<Photo>>();
+                }
+                catch(Exception exception)
+                {
+                    Console.WriteLine($"{exception.Message}");
+                }
+                return null;
             }
         }
     }

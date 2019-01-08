@@ -30,6 +30,15 @@ spec:
         ports:
         - containerPort: 80
         imagePullPolicy: Always
+        volumeMounts:
+        - name: settings
+          mountPath: /app/settings
+          readOnly: true
+      volumes:
+      - name: settings
+        secret:
+          secretName: sample-istio-photo-secrets
+# kubectl create secret generic sample-istio-photo-secrets --from-file=./appsettings.json #
 ---
 # ServiceEntry #
 apiVersion: networking.istio.io/v1alpha3
