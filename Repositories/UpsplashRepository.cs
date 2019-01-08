@@ -20,7 +20,9 @@ namespace Sample_Istio_Photo.Repositories
             {
                 try
                 {
-                    var response = await client.GetAsync($"{this.UnsplashApiConfig.BaseUrl}/photos/?client_id={this.UnsplashApiConfig.AccessKey}");
+                    string url = $"{this.UnsplashApiConfig.BaseUrl}/photos/?client_id={this.UnsplashApiConfig.AccessKey}";
+                    Console.WriteLine(url);
+                    var response = await client.GetAsync(url);
                     response.EnsureSuccessStatusCode();
                     return await response.Content.ReadAsAsync<IList<Photo>>();
                 }
