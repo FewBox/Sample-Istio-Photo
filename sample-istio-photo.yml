@@ -27,9 +27,6 @@ spec:
       containers:
       - name: sample-istio-photo
         image: fewbox/sample-istio-photo:latest
-        env:
-        - name: ASPNETCORE_ENVIRONMENT
-          value: "Docker"
         ports:
         - containerPort: 80
         imagePullPolicy: Always
