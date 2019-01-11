@@ -22,9 +22,9 @@ namespace Sample_Istio_Photo
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     var env = hostingContext.HostingEnvironment;
-                    config.AddJsonFile("settings/appsettings.json", optional: true)
-                        .AddJsonFile("appsettings.json", optional: true)
-                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                    config.AddJsonFile("appsettings.json", optional: true)
+                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                        .AddJsonFile("settings/appsettings.json", optional: true);
                     config.AddEnvironmentVariables();
                 })
                 .UseStartup<Startup>();
