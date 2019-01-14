@@ -30,7 +30,7 @@ namespace Sample_Istio_Photo
             services.AddCors();
             services.AddAutoMapper();
             // services.AddMemoryCache();
-            // services.AddHttpContextAccessor();
+            services.AddHttpContextAccessor();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             var unsplashApiConfig = this.Configuration.GetSection("UnsplashApiConfig").Get<UnsplashApiConfig>();
             var reviewApiConfig = this.Configuration.GetSection("ReviewApiConfig").Get<ReviewApiConfig>();
