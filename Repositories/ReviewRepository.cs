@@ -30,6 +30,7 @@ namespace Sample_Istio_Photo.Repositories
                     if(header.Key == "EndUser")
                     {
                         client.DefaultRequestHeaders.Add(header.Key, header.Value.ToString());
+                        Console.WriteLine(header.Value.ToString());
                     }
                 }
                 PayloadMetaResponseDto<IList<Review>> responseData;
