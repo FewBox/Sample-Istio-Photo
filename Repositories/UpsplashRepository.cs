@@ -16,6 +16,8 @@ namespace Sample_Istio_Photo.Repositories
         }
         public async Task<IList<Photo>> FindAll()
         {
+            return new List<Photo> { new Photo { Urls = new Urls{ Thumb = "https://images.unsplash.com/photo-1547461057-ced06f844a1f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjQ5MDM5fQ" }},
+            new Photo{ Urls = new Urls{ Thumb = "https://images.unsplash.com/photo-1547461056-8f20f1888e84?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjQ5MDM5fQ" } }};
             using (var client = new HttpClient())
             {
                 try
