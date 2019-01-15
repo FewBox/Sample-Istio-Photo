@@ -31,7 +31,7 @@ namespace Sample_Istio_Photo.Repositories
                     {
                         client.DefaultRequestHeaders.Add(header.Key, header.Value.ToString());
                     }
-                    Console.WriteLine(header.Value.ToString());
+                    Console.WriteLine($"{header.Key}:{header.Value}");
                 }
                 PayloadMetaResponseDto<IList<Review>> responseData;
                 try
