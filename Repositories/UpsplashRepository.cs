@@ -20,6 +20,7 @@ namespace Sample_Istio_Photo.Repositories
             {
                 try
                 {
+                    client.Timeout = TimeSpan.FromSeconds(30);
                     string url = $"{this.UnsplashApiConfig.BaseUrl}/photos/?client_id={this.UnsplashApiConfig.AccessKey}";
                     Console.WriteLine(url);
                     var response = await client.GetAsync(url);

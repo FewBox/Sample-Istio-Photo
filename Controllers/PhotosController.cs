@@ -29,6 +29,7 @@ namespace Sample_Istio_Photo.Controllers
         /// Get all photos.
         /// </summary> 
         [HttpGet]
+        [ResponseCache(VaryByHeader = "User-Agent", Duration = 60)]
         public async Task<PayloadMetaResponseDto<IList<PhotoDto>>> Get()
         {
             var photos = await this.Mapper.Map<Task<IList<Photo>>, Task<IList<PhotoDto>>>(this.UnsplashRepository.FindAll());
