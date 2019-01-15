@@ -27,7 +27,7 @@ namespace Sample_Istio_Photo.Repositories
                 client.Timeout = TimeSpan.FromSeconds(3);
                 foreach(var header in this.HttpContextAccessor.HttpContext.Request.Headers)
                 {
-                    if(header.Key == "EndUser")
+                    if(header.Key == "enduser")
                     {
                         client.DefaultRequestHeaders.Add(header.Key, header.Value.ToString());
                     }
