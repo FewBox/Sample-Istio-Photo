@@ -65,7 +65,7 @@ namespace Sample_Istio_Photo
                 builder.AllowAnyMethod();
                 builder.AllowCredentials();
             });
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
             app.UseStaticFiles();
