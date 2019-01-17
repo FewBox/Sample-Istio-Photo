@@ -10,12 +10,8 @@ namespace Sample_Istio_Photo.Dtos
         /// </summary>
         public string Content {get;set;}
         /// <summary>
-        /// Review Base64 image avatar.
+        /// Review Base64 image star.
         /// </summary>
-        public string Base64SvgAvatar { get; set; }
-        /// <summary>
-        /// Star.
-        /// </summary>
-        public int Star { get; set; }
+        public string Base64SvgStar { get; set; }
     }
 }
