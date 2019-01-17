@@ -36,7 +36,9 @@ namespace Sample_Istio_Photo.Repositories
                 PayloadMetaResponseDto<IList<Review>> responseData;
                 try
                 {
-                    var response = await client.GetAsync($"{this.ReviewApiConfig.BaseUrl}/api/reviews");
+                    string url = $"{this.ReviewApiConfig.BaseUrl}/api/reviews";
+                    Console.WriteLine(url);
+                    var response = await client.GetAsync(url);
                     response.EnsureSuccessStatusCode();
                     responseData = await response.Content.ReadAsAsync<PayloadMetaResponseDto<IList<Review>>>();
                     if(responseData.IsSuccessful)
